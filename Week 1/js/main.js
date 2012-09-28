@@ -97,33 +97,33 @@ var storeData = function(key){
 	}
 		var id = key;
 		var item 			= {};
-			item.alias		= ["Gaming Alias:", getX("alias").value];
-			item.fName 		= ["First Name:", getX("fName").value];
-			item.lName 		= ["Last Name:", getX("lName").value];
-			item.eMail 		= ["Email:", getX("eMail").value];
-			item.bDay 		= ["Birth-Day:", getX("bDay").value];
-			item.language	= ["Language:", getX("language").value];
-			item.skill		= ["Skill:", getX("skill").value];
+			item.alias		= ["Gaming Alias:", $("#alias").val()];
+			item.fName 		= ["First Name:", $("#fName").val()];
+			item.lName 		= ["Last Name:", $("#lName").val()];
+			item.eMail 		= ["Email:", $("#eMail").val()];
+			item.bDay 		= ["Birth-Day:", $("#bDay").val()];
+			item.language	= ["Language:", $("#language").val()];
+			item.skill		= ["Skill:", $("#skill").val()];
 			
 			var sexValue;
-			if(getX("male").checked){
+			if($("#male").checked){
 				sexValue = "Male";
-			}else if(getX("female").checked){
+			}else if($("#female").checked){
 				sexValue = "Female";
 			}
 			item.sex  		= ["Sex:",  sexValue];
 			
 			var proValue;
-			if(getX("pro").checked){
+			if($("#pro").checked){
 				proValue = "Yes";
 			}else{
 				proValue = "No";
 			}
 			item.pro 		= ["Professional:", proValue];
 			
-			item.division 	= ["Division:", getX("division").value];
-			item.league  	= ["League:", getX("league").value];
-			item.notes		= ["Notes:", getX("notes").value];
+			item.division 	= ["Division:", $("#division").val()];
+			item.league  	= ["League:", $("#league").val()];
+			item.notes		= ["Notes:", $("#notes").val()];
 		localStorage.setItem(id, JSON.stringify(item));
 		alert("Member has been Added! With a key: " + key);
 		
@@ -148,14 +148,14 @@ var editItem = function(){
 
 	var value = localStorage.getItem(this.key);
 	var item = JSON.parse(value);
-
-	getX("alias").value = item.alias[1];
-	getX("fName").value = item.fName[1];
-	getX("lName").value = item.lName[1];
-	getX("eMail").value = item.eMail[1];
-	getX("bDay").value = item.bDay[1];
-	getX("language").value = item.language[1];
-	getX("skill").value = item.skill[1];
+	console.log(item);
+	$("#alias").val(item.alias[1]);
+	$("#fName").val(item.fName[1]);
+	$("#lName").val(item.lName[1]);
+	$("#eMail").val(item.eMail[1]);
+	$("#bDay").val(item.bDay[1]);
+	$("#language").val(item.language[1]);
+	$("#skill").val(item.skill[1]);
 	$('#addItem').page();
 	$('#skill').val(item.skill[1]);
 	$('#skill').slider('refresh');
@@ -174,20 +174,20 @@ var editItem = function(){
 		$("input[type='checkbox']:first").attr("checked",false).checkboxradio("refresh");
 	}
 	
-	getX("division").value = item.division[1];
+	$("#division").value = item.division[1];
 	$("select").selectmenu('refresh', true);
 
-	getX("league").value = item.league[1];
+	$("#league").val = item.league[1];
 	$("select").selectmenu('refresh', true);
 
-	getX("notes").value = item.notes[1];
+	$("#notes").val = item.notes[1];
 	
 	
 	saveButton.removeEventListener("click");
 	var editSubmit = getX("submit");
 	editSubmit.addEventListener("click");
 	editSubmit.key = this.key;
-	getX("submit").value = "Save Changes";
+	$("#submit").value = "Save Changes";
 	$("#submit").button('refresh');
 	
 	localStorage.removeItem(this.key);
