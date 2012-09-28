@@ -36,6 +36,24 @@ var autoFillData = function(){
 	}
 };
 
+
+
+
+	/*
+	getX DATA <DIV>
+	makeDataList <UL>
+		setAttribute ["data-role", "list-view"  "data-filter", "true"]
+	imageLi <LI>
+	newImage <IMG> SET ATT SRC IMAGES images	
+	makeDataLi <LI>
+		makeDataSubList <UL>
+	Linkli <LI>
+		makeSubLi <LI>
+	
+	
+	*/
+	
+
 var getData = function(data){
 	var getImage = function(imageName, makeDataSubList){
 		var imageLi = document.createElement("li");
