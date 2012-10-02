@@ -1,4 +1,4 @@
-var json = {
+{
 	"member1":{
 		"alias": ["Gamer Name:", "Demlok"],
 		"fName": ["First Name:", "Johnny"],
@@ -11,7 +11,7 @@ var json = {
 		"pro": ["Professional:", "Yes"],
 		"division": ["Division:", "Central"],
 		"league": ["League:", "Major"],
-		"notes": ["Notes:", "This is not a test."],
+		"notes": ["Notes:", "This is not a test."]
 	},
 	"member2":{
 		"alias": ["Gamer Name:", "Ender"],
@@ -25,7 +25,7 @@ var json = {
 		"pro": ["Professional:", "Yes"],
 		"division": ["Division:", "West"],
 		"league": ["League:", "International"],
-		"notes": ["Notes:", "The enemies gate is down."],
+		"notes": ["Notes:", "The enemies gate is down."]
 	},
 	"member3":{
 		"alias": ["Gamer Name:", "Bean"],
@@ -39,7 +39,7 @@ var json = {
 		"pro": ["Professional:", "No"],
 		"division": ["Division:", "West"],
 		"league": ["League:", "Major"],
-		"notes": ["Notes:", "I want to be a pro gamer."],
+		"notes": ["Notes:", "I want to be a pro gamer."]
 	},
 	"member4":{
 		"alias": ["Gamer Name:", "Xander"],
@@ -53,7 +53,7 @@ var json = {
 		"pro": ["Professional:", "Yes"],
 		"division": ["Division:", "Central"],
 		"league": ["League:", "International"],
-		"notes": ["Notes:", "I am a pro."],
+		"notes": ["Notes:", "I am a pro."]
 	},
 	"member5":{
 		"alias": ["Gamer Name:", "Demetry"],
@@ -67,6 +67,6 @@ var json = {
 		"pro": ["Professional:", "Yes"],
 		"division": ["Division:", "East"],
 		"league": ["League:", "Major"],
-		"notes": ["Notes:", "W00t w00t East Coast."],
+		"notes": ["Notes:", "W00t w00t East Coast."]
 	}
 }
