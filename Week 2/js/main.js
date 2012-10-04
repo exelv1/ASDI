@@ -14,7 +14,7 @@ delete $.validator.methods.date;
 	},
 	submitHandler: function() {
 		var data = myForm.serializeArray();
-		storeData(this.key);
+		storeData(data);
 	}
 });
 	
@@ -74,11 +74,11 @@ var getData = function(data){
 		var key = localStorage.key(i);
 		var value = localStorage.getItem(key);
 		var obj = JSON.parse(value);
-		var makeDataSubList = document.createElement("ul");
+		var makeDataSubList = document.createElement("ul"); 
 		makeDataLi.appendChild(makeDataSubList);
 		getImage(obj.league[1], makeDataSubList);
 		for (var n in obj){
-			var makeSubLi = document.createElement("li");
+			var makeSubLi = document.createElement("li");  // Paragraphs <p>
 			makeDataSubList.appendChild(makeSubLi);
 			var optSubText = obj[n][0]+" "+obj[n][1];
 			makeSubLi.innerHTML = optSubText;
@@ -109,12 +109,17 @@ var makeItemLinks = function(key, makeDataSubList){
 	makeDataSubList.appendChild(deleteLink);
 };
 
-var storeData = function(key){
-	if(key == undefined || key == "null"){
+var storeData = function(data){
+	console.log(data.key);
+	
+	 if (data.key == undefined || key == "null"){
 		var key = Math.floor(Math.random()*1010101010);
-	}
+	 }else{
+	 	key = data.key;
+	 }
 		var id = key;
 		var item 			= {};
+			item.key		= key;
 			item.alias		= ["Gaming Alias:", $("#alias").val()];
 			item.fName 		= ["First Name:", $("#fName").val()];
 			item.lName 		= ["Last Name:", $("#lName").val()];

@@ -9,27 +9,38 @@ Jonathan Caraveo
 */
 
 $("#json").on("click", function(){
+	$("#xhr").empty();
 	$.ajax({
-		url      : "xhr/data.json",
-		type     : "GET",
-		dataType : "JSON",
-		success  : function(result){
-			console.log(result);
-		}
-	});
+			type     : "GET",
+			url      : "xhr/data.json",
+			dataType : "json",
+			success  : function(result){
+				console.log(result);
+					for(var i in result.members){
+						var items = result.members[i];
+						$("#xhr").append($("<ul>" + 
+						"<li>" + items.alias[0] + " " + items.alias[1] + "</li>" +
+						"<li>" + items.fName[0] + " " + items.fName[1] + "</li>" +
+						"<li>" + items.lName[0] + " " + items.lName[1] + "</li>" +
+						"<li>" + items.eMail[0] + " " + items.eMail[1] + "</li>" +
+						"<li>" + items.bDay[0] + " " + items.bDay[1] + "</li>" +
+						"<li>" + items.language[0] + " " + items.language[1] + "</li>" +
+						"<li>" + items.skill[0] + " " + items.skill[1] + "</li>" +
+						"<li>" + items.sex[0] + " " + items.sex[1] + "</li>" +
+						"<li>" + items.pro[0] + " " + items.pro[1] + "</li>" +
+						"<li>" + items.division[0] + " " + items.division[1] + "</li>" +
+						"<li>" + items.league[0] + " " + items.league[1] + "</li>" +
+						"<li>" + items.notes[0] + " " + items.notes[1] + "</li>" +
+						"<ul>"));
+					}
+			},
+			error	: function(error){
+				console.log("AJAX - JSON error");
+			}
+		});
+	console.log("hello")
 });
 
-
-/*
-// assume that the XML above is in a string named "xml"
-var data = $.parseXML(xml);
-// wrap the XML in a jQuery object to make it easier to work with
-var items = $( data );
-items.find("item").each(function(){
-    var item = $(this);
-    console.log("Name: ", item.find("name"));
-});
-*/
 
 
 
@@ -71,9 +82,8 @@ $.ajax({
 						 "</ul>"));
 
  });
-
-         $("#xhr").listview("refresh");
-
+ 				$("#xhr").listview();
+      			$("#xhr").listview("refresh");
 	  }
 });
 });

@@ -1,5 +1,5 @@
-	member1:
-        alias: YAML Johnny
+---
+	- alias: YAML Johnny
         firstname: John
         lastname: Doe
         email: johnny@vensure.net
@@ -11,9 +11,7 @@
         division: Central
         league: Major
         notes: This is not a test!
-    
-    member2
-        alias: YAML Joe
+    - alias: YAML Joe
         firstname: Joe
         lastname: Nichols
         email: nicols@vensure.net
@@ -25,9 +23,7 @@
         division: West
         league: Major
         notes: World of Warcraft!
-    
-    member3
-        alias:  YAML Iiro
+    - alias:  YAML Iiro
         firstname: Iiro
         lastname: Simonen
         email: simonene@vensure.net
@@ -40,8 +36,7 @@
         league: International
         notes: I can beat anyone!
    
-    member4
-        alias:  YAML TJ
+    - alias:  YAML TJ
         firstname: Timothy
         lastname: allen
         email: allen@vensure.net
@@ -54,8 +49,7 @@
         league: Major
         notes: Florida!
     
-    member5
-        alias:  YAML Angie
+    - alias:  YAML Angie
         firstname: Angela
         lastname: Waters
         email: waters@vensure.net
