@@ -2,7 +2,7 @@
 	"members":
 	[
 		{
-			"alias": ["Gamer Name:", "Demlok"],
+			"alias": ["Gamer Name:", "JSON Demlok"],
 			"fName": ["First Name:", "Johnny"],
 			"lName": ["Last Name:", "Caraveo"],
 			"eMail": ["Email:", "JohnnyCaraveo@gmail.com"],
@@ -16,7 +16,7 @@
 			"notes": ["Notes:", "This is not a test."]
 		},
 		{
-			"alias": ["Gamer Name:", "Ender"],
+			"alias": ["Gamer Name:", "JSON Ender"],
 			"fName": ["First Name:", "John"],
 			"lName": ["Last Name:", "Car"],
 			"eMail": ["Email:", "Caraveo@me.com"],
@@ -30,7 +30,7 @@
 			"notes": ["Notes:", "The enemies gate is down."]
 		},
 		{
-			"alias": ["Gamer Name:", "Bean"],
+			"alias": ["Gamer Name:", "JSON Bean"],
 			"fName": ["First Name:", "Rich"],
 			"lName": ["Last Name:", "Gonzales"],
 			"eMail": ["Email:", "gonzales@gmail.com"],
@@ -44,7 +44,7 @@
 			"notes": ["Notes:", "I want to be a pro gamer."]
 		},
 		{
-			"alias": ["Gamer Name:", "Xander"],
+			"alias": ["Gamer Name:", "JSON Xander"],
 			"fName": ["First Name:", "Jane"],
 			"lName": ["Last Name:", "Doe"],
 			"eMail": ["Email:", "JaneDoe@gmail.com"],
@@ -58,7 +58,7 @@
 			"notes": ["Notes:", "I am a pro."]
 		},
 		{
-			"alias": ["Gamer Name:", "Demetry"],
+			"alias": ["Gamer Name:", "JSON Demetry"],
 			"fName": ["First Name:", "Joe"],
 			"lName": ["Last Name:", "Smo"],
 			"eMail": ["Email:", "Smo@vensure.com"],
