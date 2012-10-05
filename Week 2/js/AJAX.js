@@ -42,10 +42,6 @@ $("#json").on("click", function(){
       			$("#xhr").listview("refresh");
 });
 
-
-
-
-
 $("#xml").on("click", function(){
 	$("#xhr").empty();
 	$.ajax({
@@ -54,33 +50,21 @@ $("#xml").on("click", function(){
 	  dataType: "xml",
 	  success: function(data){
 		  $(data).find("member").each(function(){
-			var alias = $(this).find("alias").text();
-			var fname = $(this).find("fname").text();
-			var lname = $(this).find("lname").text();
-			var eMail = $(this).find("eMail").text();
-			var bDay = $(this).find("bDay").text();
-			var language = $(this).find("language").text();
-			var skill = $(this).find("skill").text();
-			var sex = $(this).find("sex").text();
-			var pro = $(this).find("pro").text();
-			var division = $(this).find("division").text();
-			var league = $(this).find("league").text();
-			var notes = $(this).find("notes").text();
-	                     $("#xhr").append($(" " +
-	                         "<ul>" +
-	                         "<li>Alias: " + alias + "</li>" +
-	                         "<li>First Name: " + fname + "</li>" +
-	                         "<li>Last Name: " + lname + "</li>" +
-	                         "<li>Email: " + eMail + "</li>" + 
-	                         "<li>Birthdate: " + bDay + "</li>" +
-	                         "<li>Language: " + language + "</li>" +
-	                         "<li>Skill: " + skill + "</li>" +
-	                         "<li>Gender: " + sex + "</li>" +
-	                         "<li>Professional: " + pro + "</li>" +
-	                         "<li>Division: " + division + "</li>" +
-	                         "<li>League: " + league + "</li>" +
-	                         "<li>Notes: " + notes + "</li>" +  
-							 "</ul>"));
+             $("#xhr").append($(" " +
+                 "<ul>" +
+                     "<li>Alias: " + $(this).find("alias").text() + "</li>" +
+                     "<li>First Name: " + $(this).find("fname").text() + "</li>" +
+                     "<li>Last Name: " + $(this).find("lname").text() + "</li>" +
+                     "<li>Email: " + $(this).find("email").text() + "</li>" + 
+                     "<li>Birthdate: " + $(this).find("birthday").text() + "</li>" +
+                     "<li>Language: " + $(this).find("language").text() + "</li>" +
+                     "<li>Skill: " + $(this).find("skill").text() + "</li>" +
+                     "<li>Gender: " + $(this).find("gender").text() + "</li>" +
+                     "<li>Professional: " + $(this).find("professional").text() + "</li>" +
+                     "<li>Division: " + $(this).find("division").text() + "</li>" +
+                     "<li>League: " + $(this).find("league").text() + "</li>" +
+                     "<li>Notes: " + $(this).find("notes").text() + "</li>" +  
+				 "</ul>"));
 	
 	 });
 	 		$("#xhr").listview();
@@ -100,19 +84,20 @@ $("#csv").on("click", function(){
 		},
 		success: function(csvData){
 		console.log(csvData);
-			var list = csvData.split('\n');
-			console.log(list);
-				for (var i=0; i < list.length; i++) {
-					var items = list[i];
-					var data = items.split(',');
-	
-					$('#xhr').append($(
-						'<ul>' +
-							'<li>' + data + '</li>' + 
-						'</ul>'	
-					));
+			var list = csvData.split("\n");
+			for(var i in list){
+				var items = list[i];
+				var data = items.split(",");
+				$("#xhr").append("<ul>");
+				for(var n = 1; n < data; n++){
+					$("#xhr").append("<li>" + data[n] + "</li>");
+				}
+				$("#xhr").append($("</ul>"));
+		
 				}
 			}
+					
+		
 
 		});	
 			$("#xhr").listview();
