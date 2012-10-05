@@ -35,7 +35,7 @@ $("#json").on("click", function(){
 				}
 			},
 			error	: function(error){
-				console.log("AJAX - JSON error");
+				console.log("AJAX - JSON error: " + error);
 			}
 		});
  				$("#xhr").listview();
@@ -48,7 +48,11 @@ $("#xml").on("click", function(){
 	  type: "GET",
 	  url: "xhr/data.xml",
 	  dataType: "xml",
+	  error	: function(error){
+		console.log("AJAX - XML error: " + error);
+	  },
 	  success: function(data){
+	  console.log(data);
 		  $(data).find("member").each(function(){
              $("#xhr").append($(" " +
                  "<ul>" +
@@ -79,26 +83,23 @@ $("#csv").on("click", function(){
 		type: "GET",
 		url: "xhr/data.csv",
 		dataType: "text",
-		error: function(){
-			console.log("CSV Function Error");
+		error: function(error){
+			console.log("AJAX - CSV Error: " + error);
 		},
 		success: function(csvData){
 		console.log(csvData);
 			var list = csvData.split("\n");
-			for(var i in list){
+			for(var i = 1; i < list.length; i++){
 				var items = list[i];
 				var data = items.split(",");
-				$("#xhr").append("<ul>");
-				for(var n = 1; n < data; n++){
+				$("#xhr").append("<p>");
+				for(var n = 0; n < data.length; n++){
 					$("#xhr").append("<li>" + data[n] + "</li>");
 				}
-				$("#xhr").append($("</ul>"));
+	
 		
 				}
-			}
-					
-		
-
+		}
 		});	
 			$("#xhr").listview();
 	      	$("#xhr").listview("refresh");
