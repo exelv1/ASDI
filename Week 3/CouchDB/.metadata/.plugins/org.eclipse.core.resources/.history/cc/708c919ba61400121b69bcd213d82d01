@@ -1,0 +1,7 @@
+function (doc) {
+	if(doc.division === "West") {
+		emit(doc.division, {
+			"division": doc.division,
+		});
+	}
+}

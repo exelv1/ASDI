@@ -1,0 +1,7 @@
+function (doc) {
+	if(doc.value.division === "East") {
+		emit(doc.division.substr(4), {
+			"division": doc.division,
+		});
+	}
+}
