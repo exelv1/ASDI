@@ -20,6 +20,9 @@ Jonathan Caraveo
 		<meta name="MobileOptimized" content="320" />
 		<meta name="viewport" content="user-scalable=no, width=device-width" />
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
+		<script src="js/libs/modernizr.custom.min.js"></script>
+		<link rel="stylesheet" href="css/min.css" />
+		<link rel="stylesheet" href="css/themes/DarkKnight.css" />
 		
 		<title>Team Management</title>
 		
@@ -34,8 +37,7 @@ Jonathan Caraveo
 		</div>
 
 		<div data-role="content" class="ui-body-a">
-			<ul id="divisionList" data-role="listview">
-			</ul>
+	
 		</div>
 		
 <div data-role="footer" data-position="fixed"  data-id="nav">
@@ -71,5 +73,6 @@ Jonathan Caraveo
 	
 	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
  	<script src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
+ 	<script src="js/libs/jquery.validate.min.js" type="text/javascript"></script>
  	<script src="js/main.js" type="text/javascript"></script>
 </html>

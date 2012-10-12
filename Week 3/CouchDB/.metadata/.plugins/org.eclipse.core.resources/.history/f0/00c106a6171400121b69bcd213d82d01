@@ -34,8 +34,7 @@ Jonathan Caraveo
 		</div>
 
 		<div data-role="content" class="ui-body-a">
-			<ul id="divisionList" data-role="listview">
-			</ul>
+	
 		</div>
 		
 <div data-role="footer" data-position="fixed"  data-id="nav">

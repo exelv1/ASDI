@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;/asdiProject3/app/_attachments/js/mian.js&apos; to &apos;main.js&apos;&#x0A;- Original project: &apos;asdiProject3&apos;&#x0A;- Original element: &apos;mian.js&apos;" description="Rename resource &apos;mian.js&apos;" flags="7" id="org.eclipse.wst.jsdt.ui.rename.resource" input="app/_attachments/js/mian.js" name="main.js" stamp="1350009596739" version="1.0"/>
+</session>
