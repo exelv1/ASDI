@@ -1,0 +1,20 @@
+$(document).ready(function(){
+	$.ajax({
+		"url": '/asdip3/_design/app/_view/divisions',
+		"dataType": "json",
+		"success": function(data){
+			$.each(data.rows, function(index, division){
+				var acronym = division.value.acronym;
+				var title =   division.value.title;
+				$("#divisionList").append(
+						$("<li>").append(
+								$("<a>").attr("href", "#")
+									.text(title)
+						)
+				);
+			});
+			$("#divisionList").listview("refresh");
+		}
+		
+	});
+});

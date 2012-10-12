@@ -1,7 +1,10 @@
 {
   "env": {
     "local": {
-      "db": "http://127.0.0.1:5984/type"
+     "db": "http://127.0.0.1:5984/type"
+    },
+     "Cloudant": {
+     "db": "http://itakedincillatiodurdedre:BkdwlSYupAHIFimSENbxYIVf@caraveo.cloudant.com/asdip3"
     }
   }
 }

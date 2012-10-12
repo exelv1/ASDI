@@ -1,0 +1,46 @@
+$(document).ready(function(){
+	$.ajax({
+		"url": '/asdip3/_design/app/_view/divisions',
+		"dataType": "json",
+		"success": function(data){
+			$.each(data.rows, function(index, division){
+				var acronym = division.value.acronym;
+				var title =   division.value.title;
+				$("#divisionList").append(
+						$("<li>").append(
+								$("<a>").attr("href", "#")
+									.text(title)
+						)
+				);
+			});
+			$("#divisionList").listview("refresh");
+		}
+		
+	});
+	
+	$('#centralPage').on('pageinit', function(){
+		getCentralDivisions();
+	});	
+	
+	var getCentralDivisions = function(){
+		$.ajax({
+			"url": "/asdip3/_design/app/_view/members",
+			"dataType": "json",
+			"success": function(data){
+				$.each(data.rows, function(index, member){
+					var alias = member.value.alias[1];
+					var fname = member.value.fName[1];
+					$("#centralDivisions").append(
+							$("<li>").append(
+									$("<a>").attr("href", "#")
+										.text(alias)
+							)
+					);
+				});
+			}
+		});
+	};
+	
+	
+	
+});

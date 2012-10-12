@@ -1,0 +1,8 @@
+function (doc) {
+	if(doc._id.substr(0,8) === "member") {
+		emit(doc._id, {
+			"alias": doc.alias,
+			"fname": doc.fname
+		});
+	}
+}

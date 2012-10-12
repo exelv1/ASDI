@@ -1,0 +1,8 @@
+function (doc) {
+	if(doc.value.alias[0] === "Gamer Name:") {
+		emit(doc._id, {
+			"alias": doc.alias,
+
+		});
+	}
+}
