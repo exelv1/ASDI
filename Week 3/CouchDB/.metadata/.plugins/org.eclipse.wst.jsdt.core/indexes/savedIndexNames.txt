@@ -1,0 +1,5 @@
+INDEX VERSION 1.122+/Users/caraveo/Documents/FullSail/Advanced Scalable Data Infrastructure/Week 1/Version 1/Week 3/CouchDB/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
+3626664668.index
+4020810231.index
+1507473441.index
+2763023044.index
