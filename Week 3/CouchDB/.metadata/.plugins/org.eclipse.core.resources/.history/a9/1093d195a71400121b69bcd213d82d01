@@ -1,7 +1,0 @@
-function (doc) {
-	if(doc.division === "Central") {
-		emit(doc.division, {
-			"division": doc.division,
-		});
-	}
-}

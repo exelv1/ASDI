@@ -401,7 +401,7 @@ $(document).ready(function(){
 		//any other code needed for addItem page goes here
 		
 	});
-
+});
 	//The functions below can go inside or outside the pageinit function for the page in which it is needed.
 
 	function getX(parameter){
@@ -440,7 +440,7 @@ $(document).ready(function(){
 			var obj = JSON.parse(value);
 			var makeDataSubList = document.createElement("ul");
 			makeDataLi.appendChild(makeDataSubList);
-//			getImage(obj.league, makeDataSubList);
+			getImage(obj.league[1], makeDataSubList);
 			for (var n in obj){
 				var makeSubLi = document.createElement("li");
 				makeDataSubList.appendChild(makeSubLi);
@@ -591,7 +591,7 @@ $(document).ready(function(){
 	};
 
 	var viewLink = function(){
-		var	link = $('#viewMembers');
+		var	link = $('#viewLink');
 		link.click();
 		window.location.reload();
 		
@@ -609,7 +609,7 @@ $(document).ready(function(){
 
 
 
-var displayLink = getX("displayLink");
+var displayLink = getX("#displayLink");
 displayLink.addEventListener("click", popJSON);
 
 var clearLink = getX("clearLink");
@@ -617,5 +617,3 @@ clearLink.addEventListener("click", clearLocal);
 
 var saveButton = getX("submit");
 saveButton.addEventListener("click");
-
-});

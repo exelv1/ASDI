@@ -1,8 +1,0 @@
-function (doc) {
-	if(doc.value.alias[0] === "Gamer Name:") {
-		emit(doc._id.substr(6), {
-			"alias": doc.alias,
-
-		});
-	}
-}
