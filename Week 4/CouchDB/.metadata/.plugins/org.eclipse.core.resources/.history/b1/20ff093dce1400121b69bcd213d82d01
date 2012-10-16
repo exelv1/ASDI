@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+
+<!--
+Advanced Scalable Data Infrastructure
+Full Sail University
+Mobile Development
+Professor: Marianne Sheldon
+PlayIGL Team Management App
+Project 3
+Jonathan Caraveo 
+-->
+
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="PlayIGL Team Member Add Page!" />
+		<meta name="keywords" content="html5, mobile development, Full Sail University" />
+		<meta name="robots" content="index, follow" />
+		<meta name="HandheldFriendly" content="True" />
+		<meta name="MobileOptimized" content="320" />
+		<meta name="viewport" content="user-scalable=no, width=device-width" />
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
+		<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+ 		<script src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
+		<script src="modernizr.custom.min.js"></script>
+		<link rel="stylesheet" href="min.css" />
+		<link rel="stylesheet" href="DarkKnight.css" />
+		<title>Team Management</title>
+		
+
+
+	</head>
+	<body>
+
+	<div data-role="page" id="home">
+		<div data-role="header" data-position="fixed">
+	 		<h1>CouchApp Team Management</h1>
+		</div>
+	    
+		<div data-role="content" class="ui-body-a">
+		
+			<img  class="logo" src="logo.png" />
+			<p><a href="#addItem" data-role="button" data-theme="e" data-ajax="false" data-icon="plus" data-iconpos="right" data-inset="true">Add Member</a></p>
+		
+			<ul id="divisionList" data-role="listview" data-inset="true">
+			<li data-role="list-divider" data-theme="a">Division Types</li>
+			</ul>
+			
+			<ul id="leagueList" data-role="listview" data-inset="true">
+			<li data-role="list-divider" data-theme="a">League Types</li>
+			</ul>
+			
+			<ul data-role="listview" data-dividertheme="a" data-theme="a" data-inset="true" data-filter-theme="a">
+				<li data-role="list-divider" data-theme="a">Data Serialization Types</li>
+				<li>
+					<a href="#" id="xml" data-theme="a" />
+						<h3>XML</h3>
+						<p>Extensive Markup Language</p>
+					</a>
+				</li>
+				<li>
+					<a href="#" id="json" data-theme="a" />
+						<h3>JSON</h3>
+						<p>JavaScript Object Notation</p>
+					</a>
+				</li>
+<!--
+				<li>
+					<a href="#" id="yaml" data-ajax="false" data-theme="a" />
+						<h3>YAML</h3>
+						<p>Coma Seperated Values</p>
+					</a>
+				</li>
+-->
+				<li>
+					<a href="#" id="csv" data-ajax="false" data-theme="a" />
+						<h3>CSV</h3>
+						<p>Coma Seperated Values</p>
+					</a>
+				</li>
+			</ul>
+			
+			<div id="xhr"></div>
+			
+			<p><br /></p>
+			<ul data-role="listview" data-filter="true" data-dividertheme="a" data-theme="a"  data-filter-theme="a" data-inset="true">
+				<li data-role="list-divider">Leagues</li>
+				<li>
+					
+					<a href="#members"  id="major" data-ajax="false" data-theme="a" />
+						<img src="MLG.png" />
+						<h3>Major</h3>
+						<p>Major Gaming League</p>
+					</a>
+				</li>
+				<li>
+					<a href="#members" id="international" data-ajax="false" data-theme="a" />
+						<img src="IGL.png" />
+						<h3>International</h3>
+						<p>International Gaming League</p>
+					</a>
+				</li>
+				<li>
+					<a href="#members" id="national" data-ajax="false" data-theme="a" />
+						<img src="NGL.png" />
+						<h3>National</h3>
+						<p>National Gaming League</p>
+					</a>
+				</li>
+				<li data-role="list-divider" data-theme="a">Divisions</li>
+				<li>
+					<a href="#members" id="west" data-ajax="false" data-theme="a" />
+						<h3>West</h3>
+						<p>West Coast Gamers</p>
+					</a>
+				</li>
+				<li>
+					<a href="#members" id="central" data-ajax="false" data-theme="a" />
+						<h3>Central</h3>
+						<p>Central Gamers</p>
+					</a>
+				</li>
+				<li>
+					<a href="#members" id="east" data-ajax="false" data-theme="a" />
+						<h3>East</h3>
+						<p>East Coast Gamers</p>
+					</a>
+				</li>
+			</ul>
+				
+				
+			
+			
+		</div>
+		
+<div data-role="footer" data-position="fixed"  data-id="nav">
+			<div data-role="navbar" data-iconpos="left">
+				<ul> 
+					<li>
+						<a href="index.html" data-icon="home" data-ajax="false">Home</a>
+					</li>
+					<li>
+						<a href="index.html#membersPage" data-icon="grid" data-ajax="false">All Members</a>
+					</li>
+					<li>
+						<a href="index.html#about" data-icon="info" data-ajax="false">About</a>
+					</li>
+				</ul>
+			
+			</div>
+		</div>
+
+	</div>
+	
+	
+		<div data-role="page" id="membersPage"  data-add-back-btn="true" >
+		<div data-role="header" data-position="fixed">
+	 		<h1>All Members</h1>
+		</div>
+
+		<div data-role="content" class="ui-body-a">
+			<ul id="membersList" data-role="listview">
+			</ul>
+		</div>
+		
+<div data-role="footer" data-position="fixed"  data-id="nav">
+			<div data-role="navbar" data-iconpos="left">
+				<ul> 
+					<li>
+						<a href="index.html" data-icon="home" data-ajax="false">Home</a>
+					</li>
+					<li>
+						<a href="index.html#membersPage" data-icon="grid" data-ajax="false">All Members</a>
+					</li>
+					<li>
+						<a href="index.html#about" data-icon="info" data-ajax="false">About</a>
+					</li>
+				</ul>
+			
+			</div>
+		</div>
+
+	</div>
+	
+		<div data-role="page" id="centralPage"  data-add-back-btn="true" >
+		<div data-role="header" data-position="fixed">
+	 		<h1>Central Division Members</h1>
+		</div>
+
+		<div data-role="content" class="ui-body-a">
+			<ul id="centralList" data-role="listview">
+			</ul>
+		</div>
+		
+<div data-role="footer" data-position="fixed"  data-id="nav">
+			<div data-role="navbar" data-iconpos="left">
+				<ul> 
+					<li>
+						<a href="index.html" data-icon="home" data-ajax="false">Home</a>
+					</li>
+					<li>
+						<a href="index.html#membersPage" data-icon="grid" data-ajax="false">All Members</a>
+					</li>
+					<li>
+						<a href="index.html#about" data-icon="info" data-ajax="false">About</a>
+					</li>
+				</ul>
+			
+			</div>
+		</div>
+
+	</div>
+	
+			<div data-role="page" id="westPage"  data-add-back-btn="true" >
+		<div data-role="header" data-position="fixed">
+	 		<h1>West Division Members</h1>
+		</div>
+
+		<div data-role="content" class="ui-body-a">
+			<ul id="westList" data-role="listview">
+			</ul>
+		</div>
+		
+<div data-role="footer" data-position="fixed"  data-id="nav">
+			<div data-role="navbar" data-iconpos="left">
+				<ul> 
+					<li>
+						<a href="index.html" data-icon="home" data-ajax="false">Home</a>
+					</li>
+					<li>
+						<a href="index.html#membersPage" data-icon="grid" data-ajax="false">All Members</a>
+					</li>
+					<li>
+						<a href="index.html#about" data-icon="info" data-ajax="false">About</a>
+					</li>
+				</ul>
+			
+			</div>
+		</div>
+
+	</div>
+	
+			<div data-role="page" id="eastPage"  data-add-back-btn="true" >
+		<div data-role="header" data-position="fixed">
+	 		<h1>East Division Members</h1>
+		</div>
+
+		<div data-role="content" class="ui-body-a">
+			<ul id="eastList" data-role="listview">
+			</ul>
+		</div>
+		
+<div data-role="footer" data-position="fixed"  data-id="nav">
+			<div data-role="navbar" data-iconpos="left">
+				<ul> 
+					<li>
+						<a href="index.html" data-icon="home" data-ajax="false">Home</a>
+					</li>
+					<li>
+						<a href="index.html#membersPage" data-icon="grid" data-ajax="false">All Members</a>
+					</li>
+					<li>
+						<a href="index.html#about" data-icon="info" data-ajax="false">About</a>
+					</li>
+				</ul>
+			
+			</div>
+		</div>
+
+	</div>
+	
+			<div data-role="page" id="internationalLeague"  data-add-back-btn="true" >
+		<div data-role="header" data-position="fixed">
+	 		<h1>International League Members</h1>
+		</div>
+
+		<div data-role="content" class="ui-body-a">
+			<ul id="internationalList" data-role="listview">
+			</ul>
+		</div>
+		
+<div data-role="footer" data-position="fixed"  data-id="nav">
+			<div data-role="navbar" data-iconpos="left">
+				<ul> 
+					<li>
+						<a href="index.html" data-icon="home" data-ajax="false">Home</a>
+					</li>
+					<li>
+						<a href="index.html#membersPage" data-icon="grid" data-ajax="false">All Members</a>
+					</li>
+					<li>
+						<a href="index.html#about" data-icon="info" data-ajax="false">About</a>
+					</li>
+				</ul>
+			
+			</div>
+		</div>
+
+	</div>
+	
+			<div data-role="page" id="majorLeague"  data-add-back-btn="true" >
+		<div data-role="header" data-position="fixed">
+	 		<h1>Major League Members</h1>
+		</div>
+
+		<div data-role="content" class="ui-body-a">
+			<ul id="majorList" data-role="listview">
+			</ul>
+		</div>
+		
+<div data-role="footer" data-position="fixed"  data-id="nav">
+			<div data-role="navbar" data-iconpos="left">
+				<ul> 
+					<li>
+						<a href="index.html" data-icon="home" data-ajax="false">Home</a>
+					</li>
+					<li>
+						<a href="index.html#membersPage" data-icon="grid" data-ajax="false">All Members</a>
+					</li>
+					<li>
+						<a href="index.html#about" data-icon="info" data-ajax="false">About</a>
+					</li>
+				</ul>
+			
+			</div>
+		</div>
+
+	</div>
+	
+			<div data-role="page" id="nationalLeague" data-add-back-btn="true">
+		<div data-role="header" data-position="fixed">
+	 		<h1>National League Members</h1>
+		</div>
+
+		<div data-role="content" class="ui-body-a">
+			<ul id="nationalList" data-role="listview">
+			</ul>
+		</div>
+		
+<div data-role="footer" data-position="fixed"  data-id="nav">
+			<div data-role="navbar" data-iconpos="left">
+				<ul> 
+					<li>
+						<a href="index.html" data-icon="home" data-ajax="false">Home</a>
+					</li>
+					<li>
+						<a href="index.html#membersPage" data-icon="grid" data-ajax="false">All Members</a>
+					</li>
+					<li>
+						<a href="index.html#about" data-icon="info" data-ajax="false">About</a>
+					</li>
+				</ul>
+			
+			</div>
+		</div>
+
+	</div>
+	
+				<div data-role="page" id="about" data-add-back-btn="true">
+		<div data-role="header" data-position="fixed">
+	 		<h1>About CouchDB</h1>
+		</div>
+
+		<div data-role="content" class="ui-body-a">
+			<p>Welcome to Team Member Viewer App stored in CouchDB, you can browse members by Division or League.
+			  All member items are inserted using AJAX from CouchDB and embedded into Jquery Mobile style and is hosted on Cloudant.  Also the types(division and leagues) are dynamically genereated and inserted into JQuery Mobile using Ajax.  You can also view "All Members" which dynamically lists all the "member" items.  Types are also stored in CouchDB along with member items and design apps.</p>
+			<p>Advanced Scalable Data Infrastructure<br />
+				Full Sail University<br />
+				Mobile Development<br />
+				Professor: Marianne Sheldon<br />
+				PlayIGL Team Management App<br />
+				Project 3<br />
+				Jonathan Caraveo</p>
+			
+		
+		</div>
+		
+<div data-role="footer" data-position="fixed"  data-id="nav">
+			<div data-role="navbar" data-iconpos="left">
+				<ul> 
+					<li>
+						<a href="index.html" data-icon="home" data-ajax="false">Home</a>
+					</li>
+					<li>
+						<a href="index.html#membersPage" data-icon="grid" data-ajax="false">All Members</a>
+					</li>
+					<li>
+						<a href="index.html#about" data-icon="info" data-ajax="false">About</a>
+					</li>
+				</ul>
+			
+			</div>
+		</div>
+
+	</div>
+	
+	
+
+
+
+
+	</body>
+
+
+
+
+	
+	
+
+ 	 <script src="jquery.validate.min.js" type="text/javascript"></script>
+ 	<script src="AJAX.js" type="text/javascript"></script>
+ 	<script src="main.js" type="text/javascript"></script>
+</html>
