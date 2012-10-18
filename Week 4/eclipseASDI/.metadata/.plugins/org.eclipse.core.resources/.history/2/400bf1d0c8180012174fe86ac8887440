@@ -1,4 +1,5 @@
-$.ajax({
+$(document).ready(function(){
+	$.ajax({
 		"url": '/asdi/_design/app/_view/divisions',
 		"dataType": "json",
 		"success": function(data){
@@ -378,13 +379,8 @@ $.ajax({
 	
 	
 	
-	$(document).on('pageshow', '#home', function(){
-		$.couch.db("asdi").view("app/divisions", {
-			success: function(data) {
-				console.log(data);
-			}
-			
-		});
+	$('#home').on('pageinit', function(){
+		//code needed for home page goes here
 	});	
 
 	$('#viewMembers').on('pageinit', function(){
@@ -623,3 +619,4 @@ clearLink.addEventListener("click", clearLocal);
 var saveButton = getX("submit");
 saveButton.addEventListener("click");
 
+});

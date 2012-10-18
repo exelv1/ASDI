@@ -378,7 +378,7 @@ $.ajax({
 	
 	
 	
-	$(document).on('pageshow', '#home', function(){
+	$(document).on('pageshow', '#home' function(){
 		$.couch.db("asdi").view("app/divisions", {
 			success: function(data) {
 				console.log(data);
