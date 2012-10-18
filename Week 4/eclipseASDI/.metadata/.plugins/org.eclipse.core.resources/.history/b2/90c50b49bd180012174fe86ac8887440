@@ -1,0 +1,10 @@
+{
+  "env": {
+    "Local": {
+      "db": "http://user:password@127.0.0.1:5984/development"
+    },
+    "Cloudant": {
+      "db": "http://user:password@127.0.0.1:5984/staging"
+    }
+  }
+}
