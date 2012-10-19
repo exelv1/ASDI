@@ -1,6 +1,4 @@
-$.ajax({
-		"url": '/asdi/_design/app/_view/divisions',
-		"dataType": "json",
+$.couch.db("asdi").view("app/divisions",{
 		"success": function(data){
 			$.each(data.rows, function(index, division){
 				var acronym = division.value.acronym;
@@ -18,9 +16,7 @@ $.ajax({
 		
 	});
 	
-	$.ajax({
-		"url": '/asdi/_design/app/_view/leagues',
-		"dataType": "json",
+	$.couch.db("asdi").view("app/leagues", {
 		"success": function(data){
 			$.each(data.rows, function(index, league){
 				var acronym = league.value.acronym;
@@ -35,17 +31,130 @@ $.ajax({
 			});
 			$("#leagueList").listview("refresh");
 		}
-		
 	});
+	
+	var urlVars = function() {
+		var urlData = $($.mobile.activePage).data("url");
+		var urlParts = urlData.split("?");
+		var urlPairs = urlParts[1].split("&");
+		var urlValues = {};
+		for (var pair in urlPairs){
+			var keyValue = urlPairs[pair].split("=");
+			var key = decodeURIComponent(keyValue[0]);
+			var value = decodeURIComponent(keyValue[1]);
+			urlValues[key] = value;
+		}
+		return urlValues;
+	}
+	
+	
+	
+	$(document).on('pageshow', "#centralItems", function(){
+		var centralMember = urlVars()["central"];
+			
+		$.couch.db("asdi").openDoc(centralMember, { 
+			"success": function(data){
+				console.log(data);
+				var id = data.id;
+				var alias = data.alias[0] + " " + data.alias[1];
+				var fname = data.fName[0] + " " + data.fName[1];
+				var lname = data.lName[0] + " " + data.lName[1];
+				var eMail = data.eMail[0] + " " + data.eMail[1];
+				var bDay = data.bDay[0] + " " + data.bDay[1];
+				var language = data.language[0] + " " + data.language[1];
+				var skill = data.skill[0] + " " + data.skill[1];
+				var sex = data.sex[0] + " " + data.sex[1];
+				var pro = data.pro[0] + " " + data.pro[1];
+				var division = "Division: " + data.division;
+				var league = "League: " + data.league;
+				var notes = data.notes[0] + " " + data.notes[1];
+				
+				console.log(alias);
+				$("#centralMembersList").append(
+				$("<li>").append(
+						$("<a>").attr("href", "#")
+							.html(
+									alias + "<br />" + 
+									fname + "<br />" + 
+									lname + "<br />" + 
+									eMail + "<br />" + 
+									bDay + "<br />" + 
+									language + "<br />" + 
+									skill + "<br />" + 
+									sex + "<br />" + 
+									pro + "<br />" + 
+									division + "<br />" + 
+									league + "<br />" + 
+									notes + "<br />" +
+									"<a href='#' data-role='button'>Edit</a></br>" +
+									"<a href='#' data-role='button'>Delete</a>"
+							)
+						
+				)
+				)
+				
+				$("#centralMembersList").listview("refresh");
+			},
+			error: function(status){
+				console.log(status);
+			}
+		});
+	});
+		
+		
+		
+//		$.couch.db("asdi").view("app/centralMemberItem", {
+//			"success": function(data){
+//				$.each(data.rows, function(index, member){
+//					var id = member.id;
+//					var alias = member.value.alias[0] + " " + member.value.alias[1];
+//					var fname = member.value.fName[0] + " " + member.value.fName[1];
+//					var lname = member.value.lName[0] + " " + member.value.lName[1];
+//					var eMail = member.value.eMail[0] + " " + member.value.eMail[1];
+//					var bDay = member.value.bDay[0] + " " + member.value.bDay[1];
+//					var language = member.value.language[0] + " " + member.value.language[1];
+//					var skill = member.value.skill[0] + " " + member.value.skill[1];
+//					var sex = member.value.sex[0] + " " + member.value.sex[1];
+//					var pro = member.value.pro[0] + " " + member.value.pro[1];
+//					var division = "Division: " + member.value.division;
+//					var league = "League: " + member.value.league;
+//					var notes = member.value.notes[0] + " " + member.value.notes[1];
+//					$("#centralMembersList").append(
+//							$("<li>").append(
+//									$("<a>").attr("href", "central.html?central=" + id)
+//										.html(
+//												alias + "<br />" + 
+//												fname + "<br />" + 
+//												lname + "<br />" + 
+//												eMail + "<br />" + 
+//												bDay + "<br />" + 
+//												language + "<br />" + 
+//												skill + "<br />" + 
+//												sex + "<br />" + 
+//												pro + "<br />" + 
+//												division + "<br />" + 
+//												league + "<br />" + 
+//												notes + "<br />"
+//										)
+//									
+//							)
+//					);
+//				});
+//				$("#centralMembersList").listview("refresh");
+//			}
+//		});
+//	});
+//	
+
+	
+	
 	
 	$('#membersPage').on('pageinit', function(){
 		getMembers();
 	});	
 	
 	var getMembers = function(){
-		$.ajax({
-			"url": "/asdi/_design/app/_view/members",
-			"dataType": "json",
+		$.couch.db("asdi").view("app/members", {
 			"success": function(data){
 				$.each(data.rows, function(index, member){
 					var alias = member.value.alias[0] + " " + member.value.alias[1];
@@ -91,12 +200,10 @@ $.ajax({
 	});	
 	
 	var getCentralMembers = function(){
-		$.ajax({
-			"url": "/asdi/_design/app/_view/central",
-			"dataType": "json",
+		$.couch.db("asdi").view("app/central", {
 			"success": function(data){
-				console.log(data);
 				$.each(data.rows, function(index, member){
+					var id = member.id;
 					var alias = member.value.alias[0] + " " + member.value.alias[1];
 					var fname = member.value.fName[0] + " " + member.value.fName[1];
 					var lname = member.value.lName[0] + " " + member.value.lName[1];
@@ -111,20 +218,20 @@ $.ajax({
 					var notes = member.value.notes[0] + " " + member.value.notes[1];
 					$("#centralList").append(
 							$("<li>").append(
-									$("<a>").attr("href", "#")
+									$("<a>").attr("href", "central.html?central=" + id)
 										.html(
 												alias + "<br />" + 
-												fname + "<br />" + 
-												lname + "<br />" + 
-												eMail + "<br />" + 
-												bDay + "<br />" + 
-												language + "<br />" + 
-												skill + "<br />" + 
-												sex + "<br />" + 
-												pro + "<br />" + 
-												division + "<br />" + 
-												league + "<br />" + 
-												notes + "<br />"
+												fname + "<br />"
+//												lname + "<br />" + 
+//												eMail + "<br />" + 
+//												bDay + "<br />" + 
+//												language + "<br />" + 
+//												skill + "<br />" + 
+//												sex + "<br />" + 
+//												pro + "<br />" + 
+//												division + "<br />" + 
+//												league + "<br />" + 
+//												notes + "<br />"
 										)
 									
 							)
@@ -140,9 +247,7 @@ $.ajax({
 	});	
 	
 	var getEastMembers = function(){
-		$.ajax({
-			"url": "/asdi/_design/app/_view/east",
-			"dataType": "json",
+		$.couch.db("asdi").view("app/east", {
 			"success": function(data){
 				$.each(data.rows, function(index, member){
 					var alias = member.value.alias[0] + " " + member.value.alias[1];
@@ -188,9 +293,7 @@ $.ajax({
 	});	
 	
 	var getWestMembers = function(){
-		$.ajax({
-			"url": "/asdi/_design/app/_view/west",
-			"dataType": "json",
+		$.couch.db("asdi").view("app/west", {
 			"success": function(data){
 				$.each(data.rows, function(index, member){
 					var alias = member.value.alias[0] + " " + member.value.alias[1];
@@ -237,9 +340,7 @@ $.ajax({
 	});	
 	
 	var getInternationalMembers = function(){
-		$.ajax({
-			"url": "/asdi/_design/app/_view/international",
-			"dataType": "json",
+		$.couch.db("asdi").view("app/international", {
 			"success": function(data){
 				$.each(data.rows, function(index, member){
 					var alias = member.value.alias[0] + " " + member.value.alias[1];
@@ -285,9 +386,7 @@ $.ajax({
 	});	
 	
 	var getMajorMembers = function(){
-		$.ajax({
-			"url": "/asdi/_design/app/_view/major",
-			"dataType": "json",
+		$.couch.db("asdi").view("app/major", {
 			"success": function(data){
 				$.each(data.rows, function(index, member){
 					var alias = member.value.alias[0] + " " + member.value.alias[1];
@@ -333,9 +432,7 @@ $.ajax({
 	});	
 	
 	var getNationalMembers = function(){
-		$.ajax({
-			"url": "/asdi/_design/app/_view/national",
-			"dataType": "json",
+		$.couch.db("asdi").view("app/national", {
 			"success": function(data){
 				$.each(data.rows, function(index, member){
 					var alias = member.value.alias[0] + " " + member.value.alias[1];
@@ -378,14 +475,14 @@ $.ajax({
 	
 	
 	
-	$(document).on('pageshow', '#home', function(){
-		$.couch.db("asdi").view("app/divisions", {
-			success: function(data) {
-				console.log(data);
-			}
-			
-		});
-	});	
+//	$(document).on('pageshow', '#home', function(){
+//		$.couch.db("asdi").view("app/divisions", {
+//			success: function(data) {
+//				console.log(data);
+//			}
+//			
+//		});
+//	});	
 
 	$('#viewMembers').on('pageinit', function(){
 		getData(data);
@@ -478,12 +575,14 @@ $.ajax({
 		makeDataSubList.appendChild(deleteLink);
 	};
 
+	
 	var storeData = function(key){
 		if(key == undefined || key == "null"){
 			var key = Math.floor(Math.random()*1010101010);
 		}
-			var id = key;
+			
 			var item 			= {};
+				item.id         = key;
 				item.alias		= ["Gaming Alias:", $("#alias").val()];
 				item.fName 		= ["First Name:", $("#fName").val()];
 				item.lName 		= ["Last Name:", $("#lName").val()];
@@ -512,6 +611,18 @@ $.ajax({
 				item.division 	= ["Division:", $("#division").val()];
 				item.league  	= ["League:", $("#league").val()];
 				item.notes		= ["Notes:", $("#notes").val()];
+	
+					$.couch.db("asdi").saveDoc(item, {
+					    success: function(item) {
+					        console.log(item);
+					    },
+					    error: function(status) {
+					        console.log(status);
+					    }
+					});
+				
+				
+				
 			localStorage.setItem(id, JSON.stringify(item));
 			alert("Member has been Added! With a key: " + key);
 			
@@ -622,4 +733,5 @@ clearLink.addEventListener("click", clearLocal);
 
 var saveButton = getX("submit");
 saveButton.addEventListener("click");
+
 
